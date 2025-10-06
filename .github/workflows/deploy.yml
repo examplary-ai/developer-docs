@@ -34,5 +34,7 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: eu-central-1
+      - name: Install dependencies
+        run: yarn install
       - name: Deploy
         run: yarn deploy
