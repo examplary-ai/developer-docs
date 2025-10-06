@@ -30,5 +30,9 @@ jobs:
         with:
           node-version: 20
           cache: "yarn"
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-central-1
       - name: Deploy
         run: yarn deploy
