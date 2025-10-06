@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #af4ec5;
+  --ifm-color-primary-dark: #af4ec5;
+  --ifm-color-primary-darker: #af4ec5;
+  --ifm-color-primary-darkest: #af4ec5;
+  --ifm-color-primary-light: #af4ec5;
+  --ifm-color-primary-lighter: #af4ec5;
+  --ifm-color-primary-lightest: #af4ec5;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base:
+    "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-menu-color-background-hover: #e5e7eb;
+  --ifm-menu-color-background-active: #e5e7eb;
+}
+
+.theme-doc-sidebar-container nav {
+  padding: 1rem;
+}
+
+.theme-doc-sidebar-container .menu__list .menu__list {
+  margin-left: 0.5rem;
+}
+
+.theme-doc-sidebar-container nav a {
+  font-weight: 400;
+  font-size: 15px;
+  color: #2e3137;
+}
+.theme-doc-sidebar-container nav a.menu__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.theme-doc-sidebar-container {
+  border-right-color: #f3f4f6;
+  background: #f9fafb;
+}
+
+.theme-doc-sidebar-container .menu__caret:before,
+.theme-doc-sidebar-container .menu__link--sublist-caret:after {
+  background-size: contain;
+}
+
+@media (min-width: 769px) {
+  body main div.container.padding-top--md > :first-child {
+    padding: 1.5rem 2rem;
+  }
+}
+
+.breadcrumbs__link {
+  color: #4c5564;
+}
+
+div[class*="codeBlockTitle"] {
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,43 @@
+{
+  "name": "@examplary/developer-docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus clean-api-docs all && docusaurus gen-api-docs all && docusaurus build",
+    "deploy": "bash -c 'yarn serverless deploy --verbose --stage ${STAGE/staging/production}'"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/preset-classic": "3.8.1",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "docusaurus-plugin-generate-llms-txt": "^0.0.1",
+    "docusaurus-plugin-openapi-docs": "^4.5.1",
+    "docusaurus-theme-openapi-docs": "^4.5.1",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.8.1",
+    "@docusaurus/types": "3.8.1",
+    "serverless": "^4.19.1",
+    "serverless-lift": "^1.32.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
+  }
+}

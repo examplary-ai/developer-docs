@@ -1,0 +1,21 @@
+# Dependencies
+/node_modules
+
+# Production
+/build
+
+# Generated files
+.docusaurus
+.cache-loader
+docs/rest-api/**
+!docs/rest-api/index.md
+static/llms.txt
+
+# Misc
+.DS_Store
+.env
+.env.*
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
