@@ -3,10 +3,8 @@ service: developers
 params:
   default:
     domain: developers-${sls:stage}.examplary.ai
-    certificateArn: ${env:ACM_CERTIFICATE_ARN}
   production:
     domain: developers.examplary.ai
-    certificateArn: ${env:ACM_CERTIFICATE_ARN}
 
 provider:
   name: aws
@@ -22,4 +20,4 @@ constructs:
     type: static-website
     path: build
     domain: ${param:domain}
-    certificate: ${param:certificateArn}
+    certificate: ${env:ACM_CERTIFICATE_ARN}
