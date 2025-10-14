@@ -72,7 +72,7 @@ export default function MyQuestionAssessmentComponent({ question, api }) {
 
 ## File uploads
 
-In teacher environments, it's also possible to prompt the user to upload files, which will be stored in the Examplary cloud storage. You can use the `api.uploadFile` method to handle file uploads.
+It's also possible to prompt the user to upload files, which will be stored in the Examplary cloud storage. You can use the `api.uploadFile` method to handle file uploads.
 
 That method optionally takes a `accepts` parameter, which is a string that specifies the file types to accept (e.g., `"image/*"` for all image types).
 
