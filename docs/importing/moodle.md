@@ -4,7 +4,7 @@ Examplary supports importing quizzes from Moodle, using their XML export format.
 
 [Moodle XML format](https://docs.moodle.org/500/en/Moodle_XML_format) is a widely used format for exporting quizzes from Moodle. Examplary can read this format and convert it into its own question types.
 
-This means you can use various other tools to create quizzes, like the [R/Exams](https://www.r-exams.org), and then import them into Examplary.
+This means you can use various other tools to create quizzes, like the open-source [R/Exams](https://www.r-exams.org), and then import them into Examplary.
 
 ## Example XML
 

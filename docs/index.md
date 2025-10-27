@@ -19,3 +19,4 @@ This documentation will guide you through the available features, how to set up 
 
 - 🎒 [Connect Canvas LMS](./lms/canvas)
 - 📬 [Import quizzes from Moodle](./importing/moodle)
+- 📝 [Import QTI assessment data](./importing/qti)
