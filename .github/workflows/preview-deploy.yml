@@ -55,7 +55,7 @@ jobs:
               pull_number: prNumber
             });
             const changedFileLinks = changedFiles.data
-              .filter(file => file.status !== 'removed' && file.filename.startsWith('docs/'))
+              .filter(file => file.status !== 'removed' && file.filename.startsWith('docs/') && file.filename.includes('.md'))
               .map(file => ({...file, basePath: file.filename.replace('docs/', '').replace('index.mdx', '').replace('index.md', '').replace('.mdx', '').replace('.md', '')}))
               .map(file => ({...file, previewUrl: `${previewUrl}/${file.basePath}`}))
               .map(file => `- [${file.basePath}](${file.previewUrl})`).join('\n');
