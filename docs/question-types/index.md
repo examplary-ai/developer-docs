@@ -13,11 +13,11 @@ You can also create your own custom question types to extend the platform's capa
 
 Building custom question types involves the following steps:
 
-1. Create a folder with a [metadata file](./metadata) and icon
-2. Implement [components](./components) for various views (assessment, print, etc.)
+1. Create a folder with a [metadata file](metadata) and icon
+2. Implement [components](components) for various views (assessment, print, etc.)
 3. Test them locally using the CLI preview tool
-4. [Upload](./publishing) the question type to the Examplary platform
-5. Optionally, set up a GitHub repository and CI pipeline for [automated deployment](./deployment)
+4. [Upload](publishing) the question type to the Examplary platform
+5. Optionally, set up a GitHub repository and CI pipeline for [automated deployment](deployment)
 
 ## Directory structure
 
