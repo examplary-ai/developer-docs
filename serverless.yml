@@ -21,3 +21,15 @@ constructs:
     path: build
     domain: ${param:domain}
     certificate: ${env:ACM_CERTIFICATE_ARN}
+
+resources:
+  Resources:
+    Route53Record:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneId: Z06296911GDFSE5PQZR2Z
+        Name: ${param:domain}
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName: ${construct:developers.cname}
