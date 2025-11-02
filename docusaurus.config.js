@@ -20,11 +20,17 @@ const config = {
   noIndex: process.env.STAGE !== "production",
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownImages: "throw",
+      onBrokenMarkdownLinks: "throw",
+    }
+  },
 
   presets: [
     [
-      "classic",
+      "@docusaurus/preset-classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
@@ -34,6 +40,10 @@ const config = {
         },
         theme: {
           customCss: "./static/custom.css",
+        },
+        sitemap: {
+          lastmod: "date",
+          filename: "sitemap.xml",
         },
       }),
     ],

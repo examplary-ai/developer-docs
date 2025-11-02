@@ -4,25 +4,23 @@
   "private": true,
   "scripts": {
     "start": "docusaurus start",
-    "build": "docusaurus clean-api-docs all && docusaurus gen-api-docs all && docusaurus build",
+    "build": "docusaurus clean-api-docs all && docusaurus gen-api-docs all && rm docs/rest-api/examplary-api.info.mdx && NODE_ENV=production docusaurus build",
     "deploy": "serverless deploy --stage production"
   },
   "dependencies": {
-    "@docusaurus/core": "3.8.1",
-    "@docusaurus/preset-classic": "3.8.1",
-    "@mdx-js/react": "^3.0.0",
-    "clsx": "^2.0.0",
+    "@docusaurus/core": "3.9.2",
+    "@docusaurus/preset-classic": "3.9.2",
+    "@mdx-js/react": "^3.1.1",
     "docusaurus-plugin-generate-llms-txt": "^0.0.1",
     "docusaurus-plugin-openapi-docs": "^4.5.1",
     "docusaurus-theme-openapi-docs": "^4.5.1",
-    "prism-react-renderer": "^2.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.8.1",
-    "@docusaurus/types": "3.8.1",
-    "serverless": "^4.19.1",
+    "@docusaurus/types": "3.9.2",
+    "serverless": "^4.22.0",
     "serverless-lift": "^1.32.0"
   },
   "browserslist": {
@@ -38,6 +36,6 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=20.0"
   }
 }
