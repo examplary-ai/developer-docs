@@ -47,7 +47,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.issue.number;
-            const previewUrl = `http://developers-preview-${prNumber}.examplary.ai`;
+            const previewUrl = `https://developers-preview-${prNumber}.examplary.ai`;
             let commentBody = `✅ Preview environment deployed successfully!\n\nPreview URL: ${previewUrl}\n\nThis environment will be automatically cleaned up when the PR is closed or merged.`;
 
             // Get changed files and link to them if needed
