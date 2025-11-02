@@ -1,0 +1,579 @@
+# EU AI Act Compliance
+
+- **Application Owner**: Examplary AI Team (hi@examplary.ai)
+- **Document Version**: 1.0.0
+- **Last Updated**: 2 November 2025
+
+## Key Links
+
+- [Main Website](https://examplary.ai)
+- [API Documentation](/rest-api)
+- [Developer Documentation](https://developers.examplary.ai)
+- [Privacy Policy](https://examplary.ai/privacy)
+- [Terms of Service](https://examplary.ai/terms)
+
+## General Information
+
+{/* EU AI Act Article 11 (https://artificialintelligenceact.eu/article/11/); Annex IV (https://artificialintelligenceact.eu/annex/4/) paragraph 1, 2, 3 */}
+
+### Purpose and Intended Use
+
+- **Primary Purpose**: Examplary is an AI-powered examination platform that enables educators and institutions to create, administer, and grade exams efficiently. The system leverages several AI models, including Google Gemini 2.5 Flash and Pro models to generate exam questions, provide automated grading suggestions, and offer feedback to students.
+
+- **Sector of Deployment**: Education (Higher Education, Professional Training, K-12)
+
+- **Problem Statement**: Examplary addresses the time-consuming nature of exam creation and grading, helping educators focus more on teaching and student support rather than administrative tasks.
+
+- **Target Users and Stakeholders**:
+
+  - Primary Users: Educators, teachers, and instructors
+  - Secondary Users: Educational administrators
+  - End Users: Students taking exams
+  - Stakeholders: Educational institutions, learning management system administrators
+
+- **Key Performance Indicators (KPIs)**:
+
+  - Question generation quality and relevance
+  - Grading accuracy and consistency
+  - Time saved in exam creation and grading
+  - User satisfaction scores
+  - System uptime and reliability
+
+- **Ethical Considerations**:
+
+  - Fair and unbiased assessment of student performance
+  - Protection of student data and privacy
+  - Transparency in AI-assisted grading decisions
+  - Accessibility for students with diverse needs
+  - Prevention of academic misconduct
+
+- **Regulatory Constraints**:
+
+  - GDPR compliance for EU users
+  - FERPA compliance for US educational institutions
+  - Accessibility standards (WCAG 2.1)
+  - EU AI Act requirements for high-risk AI systems in education
+
+- **Prohibited Uses**:
+
+  - Using the system for high-stakes decisions without human oversight
+  - Social scoring or profiling of students beyond academic performance
+  - Discriminatory practices based on protected characteristics
+  - Unauthorized sharing of student data with third parties
+  - Using generated content for purposes outside the educational context
+
+- **Operational Environment**:
+  - Cloud-based platform (Amazon Web Services)
+  - Web browser interface for desktop and mobile devices
+  - API integration with Learning Management Systems (Canvas, Moodle, etc.)
+  - Multi-tenant SaaS architecture
+
+## Risk Classification
+
+{/* Prohibited Risk: EU AI Act Chapter II Article 5 (https://artificialintelligenceact.eu/article/5/) */}
+{/* High-Risk: EU AI Act Chapter III, Section 1 Article 6 (https://artificialintelligenceact.eu/article/6/), Article 7 (https://artificialintelligenceact.eu/article/7/) */}
+{/* Limited Risk: Chapter IV Article 50 (https://artificialintelligenceact.eu/article/50/) */}
+
+Examplary is classified as a **High-Risk** AI system under the EU AI Act for the following reasons:
+
+1. **Educational Context** (Article 6, Annex III, Section 3): The system is used to:
+
+   - Determine access to educational institutions (through assessment)
+   - Evaluate learning outcomes and student performance
+   - Influence decisions on educational paths and grading
+
+2. **Automated Decision-Making**: While human oversight is maintained, the system provides AI-generated:
+
+   - Exam questions and content
+   - Automated grading suggestions
+   - Performance assessments in practice tests
+
+3. **Potential Impact**: Educational assessments can significantly affect:
+
+   - Student advancement and graduation
+   - Access to further educational opportunities
+   - Career prospects and professional development
+   - Student self-perception and confidence
+
+## Application Functionality
+
+{/* EU AI Act Article 11 (https://artificialintelligenceact.eu/article/11/); Annex IV (https://artificialintelligenceact.eu/annex/4/), paragraph 1, 2, 3 */}
+
+### Instructions for Use for Deployers
+
+{/* EU AI Act Article 13 (https://artificialintelligenceact.eu/article/13/) */}
+
+Examplary should be deployed with the following considerations:
+
+- **Human Oversight Required**: All AI-generated content and grading must be reviewed by qualified educators before final decisions
+- **Training**: Educators must be trained on the system's capabilities, limitations, and proper use
+- **Context Awareness**: Results should be interpreted within the broader educational context
+- **Regular Review**: Periodic assessment of system performance and outcomes
+- **Student Communication**: Clear communication to students about AI use in assessments
+
+### Model Capabilities
+
+**What Examplary Can Do**:
+
+- Generate exam questions based on course materials and learning objectives
+- Create questions in multiple formats (multiple choice, short answer, essay, etc.)
+- Provide automated grading for objective question types
+- Suggest grades and feedback for subjective responses
+- Analyze exam difficulty and question quality
+- Generate variations of questions for academic integrity
+- Import and export questions in standard formats (QTI, Moodle)
+- Integrate with Learning Management Systems
+
+**Limitations**:
+
+- Cannot fully evaluate complex critical thinking without human review
+- May not capture nuanced or creative answers outside training patterns
+- Requires source materials for context-specific question generation
+- Performance depends on quality and clarity of input materials
+- Cannot assess non-textual elements without additional context
+- May require adjustment for specialized or highly technical domains
+
+### Input Data Requirements
+
+**Format Expectations**:
+
+- Source materials: PDF, DOCX, TXT, Markdown, web page content
+- Learning objectives: Structured text format
+- Student responses: Text-based submissions
+- Grading rubrics: Structured text format
+
+### Output Explanation
+
+**Question Generation Outputs**:
+
+- Generated questions include difficulty level indicators
+- Bloom's taxonomy or other taxonomy classification for each question
+- Suggested point values and time estimates
+
+**Grading suggestions Outputs**:
+
+- Numerical scores with confidence levels
+- Feedback comments and suggestions
+- Rubric alignment indicators
+- Certainty scores to help educators identify areas needing attention
+
+### System Architecture Overview
+
+**Core Components**:
+
+1. **Content Processing Engine**
+
+   - Document parsing and analysis
+   - Content extraction and structuring
+   - Learning objective mapping
+
+2. **AI Generation Module**
+
+   - Google Gemini 2.5 for question generation and editing
+   - Google Gemini 2.5 for grading and feedback suggestions
+   - Prompt engineering and template management
+
+3. **Assessment Management System**
+
+   - Exam creation and configuration
+   - Question bank management
+   - Session and submission tracking
+   - Results analytics and reporting
+
+4. **Integration Layer**
+
+   - LMS connectors (Canvas, Moodle)
+   - API endpoints for third-party systems
+   - Import/export functionality (QTI, custom formats)
+
+5. **User Interface**
+   - Web-based educator dashboard
+   - Student assessment interface
+   - Administrative controls and settings
+
+## Models and Datasets
+
+{/* EU AI Act Article 11 (https://artificialintelligenceact.eu/article/11/); Annex IV (https://artificialintelligenceact.eu/annex/4/) paragraph 2 (d) */}
+
+### Models
+
+| Model                   | Provider | Version | Documentation                                                                   | Application Usage                                                  |
+| ----------------------- | -------- | ------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Google Gemini 2.5 Flash | Google   | 2.5     | [Link](https://modelcards.withgoogle.com/assets/documents/gemini-2.5-flash.pdf) | Question generation, content analysis, initial grading suggestions |
+| Google Gemini 2.5 Pro   | Google   | 2.5     | [Link](https://modelcards.withgoogle.com/assets/documents/gemini-2.5-pro.pdf)   | Complex reasoning, essay grading, advanced feedback generation     |
+
+### Datasets
+
+| Dataset                        | Source                   | Application Usage                                            |
+| ------------------------------ | ------------------------ | ------------------------------------------------------------ |
+| User-Provided Course Materials | Educational Institutions | Source content for question generation specific to courses   |
+| Grading Rubrics                | Educational Institutions | Assessment criteria for automated and assisted grading       |
+| Taxonomies of Learning         | Examplary                | Classification frameworks for organizing educational content |
+
+**Data Characteristics**:
+
+- **Provenance**: User-uploaded course materials, internally developed templates
+- **Scope**: Educational content across multiple domains and difficulty levels
+- **Collection Method**: User uploads, API integrations with LMS systems
+- **Labeling**: Manual validation by educators
+- **Privacy**: All user data processed in compliance with GDPR and data protection regulations
+
+## Deployment
+
+### Infrastructure and Environment Details
+
+**Cloud Setup**:
+
+- **Provider**: Amazon Web Services (AWS)
+- **Regions**: Europe (eu-central-1)
+
+### Integration with External Systems
+
+{/* EU AI Act Article 11 (https://artificialintelligenceact.eu/article/11/); Annex IV (https://artificialintelligenceact.eu/annex/4/) paragraph 1 (b, c, d, g, h), 2 (a) */}
+
+**External Dependencies**:
+
+- Google Gemini API (AI generation)
+- Learning Management Systems (Canvas, Moodle)
+- Identity providers (AWS Cognito, OAuth, SAML)
+- Email service providers (AWS SES)
+- Payment processing (Stripe)
+
+**Error Handling**:
+
+- Retry logic with exponential backoff for API calls
+- Fallback to cached responses when possible
+- Graceful degradation for non-critical features
+- User notification of processing errors
+- Detailed error logging for debugging
+
+### Deployment Plan
+
+**Environments**:
+
+- Development: For feature development and testing
+- Staging: Pre-production testing and validation
+- Production: Live user environment with multi-region deployment
+
+**Infrastructure Scaling**:
+
+- Serverless architecture for automatic scaling
+- CDN caching for static assets
+
+**User Information**:
+
+- SaaS deployment accessible via https://app.examplary.ai
+- Private cloud options available for enterprise customers
+
+## Lifecycle Management
+
+{/* EU AI Act Article 11 (https://artificialintelligenceact.eu/article/11/); Annex IV (https://artificialintelligenceact.eu/annex/4/) paragraph 6 */}
+
+### Risk Management System
+
+{/* EU AI Act Article 9 (https://artificialintelligenceact.eu/article/9/) */}
+
+**Risk Assessment Methodology**:
+
+- ISO 31000 Risk Management Framework
+- NIST AI Risk Management Framework
+- Regular risk assessments conducted quarterly
+- Continuous monitoring of system performance and user feedback
+
+**Identified Risks**:
+
+#### 1. Bias in Question Generation or Grading
+
+**Potential Harm**: Unfair assessment outcomes for certain student groups based on demographics, language proficiency, or cultural background.
+
+**Likelihood**: Medium | **Severity**: High
+
+**Mitigation Measures**:
+
+- Human review required for all assessments
+- User feedback mechanism for reporting potential bias
+- Regular updates to prompts and model configurations
+
+#### 2. Inaccurate Grading or Feedback
+
+**Potential Harm**: Students receiving incorrect grades affecting their academic progress, self-confidence, and future opportunities.
+
+**Likelihood**: Medium | **Severity**: High
+
+**Mitigation Measures**:
+
+- Confidence scoring on all automated grades
+- Mandatory human review for all grading suggestions
+- Clear communication of AI suggestions vs. human grading
+- User feedback mechanism
+- Regular updates to prompts and model configurations
+
+#### 3. Privacy Breaches and Data Leakage
+
+**Potential Harm**: Unauthorized access to student exam responses, grades, or personal information.
+
+**Likelihood**: Low | **Severity**: Critical
+
+**Mitigation Measures**:
+
+- End-to-end encryption for data in transit
+- Strict access controls and authentication
+- GDPR-compliant data processing agreements
+- Data minimization and retention policies
+
+#### 4. Academic Integrity Concerns
+
+**Potential Harm**: Students misusing the system or generated questions being leaked, compromising exam validity.
+
+**Likelihood**: Medium | **Severity**: Medium
+
+**Mitigation Measures**:
+
+- Question variation and randomization
+- Access controls and security
+- Usage monitoring
+- Educator controls for exam release
+
+#### 5. Model Drift and Performance Degradation
+
+**Potential Harm**: Decreased quality of generated questions or grading accuracy over time.
+
+**Likelihood**: Medium | **Severity**: Medium
+
+**Mitigation Measures**:
+
+- Regular validation against benchmark datasets
+- User feedback mechanism
+- Regular updates to prompts and model configurations
+
+#### 6. System Availability and Reliability
+
+**Potential Harm**: System downtime during critical exam periods affecting student assessments.
+
+**Likelihood**: Low | **Severity**: High
+
+**Mitigation Measures**:
+
+- 99.9% uptime SLA commitment
+- Load testing and capacity planning
+- Scheduled maintenance during low-usage periods
+
+### Monitoring and Maintenance
+
+**Performance Metrics**:
+
+_Application Performance_:
+
+- Response time (p50, p95, p99)
+- Error rate and types
+- API success rate
+
+_Model Performance_:
+
+- Grading accuracy vs. human assessments
+- Generation success rate
+- Model latency and throughput
+
+**Monitoring Procedures**:
+
+- Real-time dashboards for all key metrics
+- Automated alerting for anomalies and threshold breaches
+
+**Change Log Maintenance**:
+
+All changes are documented with:
+
+- Version number and release date
+- Description of new features added
+- Updates to existing functionality
+- Deprecated features with migration path
+- Removed features and rationale
+- Bug fixes and issue resolution
+- Security patches and vulnerability fixes
+- Performance improvements
+- Model updates and retraining
+
+**Versioning Strategy**:
+
+- Incremental integer version numbers
+- API versioning with deprecation notices
+- Change log published for all releases
+
+## Testing and Validation
+
+{/* EU AI Act Article 15 (https://artificialintelligenceact.eu/article/15/) */}
+
+### Accuracy Throughout the Lifecycle
+
+**Data Quality and Management**:
+
+- **High-Quality Training Data**: Source materials validated by educators
+- **Data Preprocessing**: Normalization, format standardization
+- **Data Validation**: Automated checks for completeness and consistency
+- **Continuous Monitoring**: Regular assessment of input data quality
+
+**Model Selection and Optimization**:
+
+- **Algorithm Selection**: Google Gemini models chosen for educational reasoning capabilities
+- **Prompt Engineering**: Iterative refinement of prompts for optimal outputs
+
+**Feedback Mechanisms**:
+
+- Real-time educator feedback collection
+- Comparison of AI suggestions with final versions (grades, questions)
+- Error tracking and root cause analysis
+- Continuous improvement based on usage patterns
+
+### Robustness
+
+**Robustness Measures**:
+
+- **Adversarial Testing**: Regular testing with edge cases and unusual inputs
+- **Stress Testing**: Load testing with concurrent users and requests
+- **Error Handling**: Graceful degradation when encountering unexpected inputs
+- **Domain Adaptation**: Testing across diverse subjects and educational levels
+
+**Scenario-Based Testing**:
+
+- Ambiguous or poorly structured input materials
+- Student responses with unconventional formatting
+- Non-standard language use or dialects
+- Content in mixed languages
+- Extremely short or long responses
+- Special characters and formatting edge cases
+
+**Uncertainty Estimation**:
+
+- Confidence scores for all generated grades
+- Human review required for all grading suggestions
+
+
+### Cybersecurity
+
+{/* EU AI Act Article 11 (https://artificialintelligenceact.eu/article/11/); Annex IV (https://artificialintelligenceact.eu/annex/4/) paragraph 2 (h) */}
+
+**Data Security**:
+
+- End-to-end encryption (TLS 1.3) for data in transit
+- Encrypted backups with secure key management
+- Regular security audits and vulnerability assessments
+
+**Access Control**:
+
+- Role-based access control (RBAC) with least privilege principle
+- OAuth 2.0 and SAML for identity federation
+- Session management and timeout controls
+- Audit logging of all access and changes
+
+**Threat Modeling**:
+
+- Regular threat assessments following STRIDE methodology
+- Security code reviews for all releases
+- Dependency scanning for known vulnerabilities
+
+**Incident Response**:
+
+- 24/7 security monitoring and alerting
+- Post-incident analysis and remediation tracking
+
+**Secure Development Practices**:
+
+- Security training for all developers
+- Secure coding guidelines and automated checks
+- Code review requirements including security review
+- Dependency updates and patch management
+
+## Human Oversight
+
+{/* EU AI Act Article 14 (https://artificialintelligenceact.eu/article/14/); Article 11 (https://artificialintelligenceact.eu/article/11/); Annex IV (https://artificialintelligenceact.eu/annex/4/) paragraph 2(e) */}
+
+**Human-in-the-Loop Mechanisms**:
+
+1. **Question Generation Review**:
+
+   - All generated questions reviewed by educators before use
+   - Ability to edit, approve, or reject generated content
+   - Version history and change tracking
+
+2. **Grading Oversight**:
+
+   - AI grading presented as suggestions, not final grades
+   - Mandatory human review for all grading suggestions
+
+3. **Quality Assurance**:
+   - Random sampling of AI outputs for manual review
+   - Educator feedback integration into system improvements
+
+**Limitations and Constraints**:
+
+_What the System Cannot Do_:
+
+- Make final grading decisions without educator approval
+- Assess non-textual elements (diagrams, calculations) without context
+- Evaluate interpersonal skills or practical demonstrations
+- Account for individual student circumstances or accommodations
+- Replace pedagogical judgment and teaching expertise
+- Guarantee perfect accuracy in subjective assessment
+
+_Known Weaknesses_:
+
+- May struggle with highly specialized or technical terminology
+- Performance varies with input quality and clarity
+- Limited context for individual student learning trajectories
+- May not capture creative or unconventional correct answers
+- Requires regular human calibration and validation
+
+_Performance Degradation Scenarios_:
+
+- Very long or very short student responses
+- Mixed-language or code-switching in responses
+- Highly ambiguous or poorly worded questions
+- Responses requiring external knowledge not in source materials
+- New or emerging topics not well-represented in training data
+
+### EU Declaration of Conformity
+
+{/* EU AI Act Article 47 (https://artificialintelligenceact.eu/article/47/) */}
+
+**Conformity Assessment Status**: In Progress
+
+As a high-risk AI system under the EU AI Act, Examplary is undergoing conformity assessment procedures. Upon completion, a formal EU Declaration of Conformity will be issued including:
+
+- System name and version
+- Provider name and address (Examplary AI)
+- Statement of conformity with EU AI Act requirements
+- Compliance with GDPR (Regulation (EU) 2016/679)
+- Reference to harmonized standards applied
+- Conformity assessment procedure description
+- Notified body information (when applicable)
+- Declaration signature and date
+
+**Expected Completion**: Q2 2026 (aligned with EU AI Act enforcement timeline)
+
+## Documentation Metadata
+
+### Template Version
+
+- Based on: [TechOps Application Documentation Template](https://raw.githubusercontent.com/aloosley/techops/refs/heads/main/template/application%20documentation.md)
+- Adapted: 2 November 2025
+
+### Documentation Authors
+
+- **Examplary AI Team** (Owner)
+
+### Review Schedule
+
+- Updates triggered by:
+  - Major system changes
+  - Model updates
+  - Regulatory changes
+  - Significant incidents
+  - User feedback trends
+
+### Version History
+
+- v1.0.0 (2 November 2025): Initial EU AI Act compliance documentation
+
+---
+
+_This document is maintained in accordance with EU AI Act requirements for high-risk AI systems. For questions or updates, please contact the team at hi@examplary.ai_
