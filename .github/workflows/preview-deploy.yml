@@ -60,7 +60,7 @@ jobs:
               .filter(file => file.status !== 'removed' && file.filename.startsWith('docs/') && file.filename.includes('.md'))
               .map(file => ({...file, basePath: file.filename.replace('docs/', '').replace('index.mdx', '').replace('index.md', '').replace('.mdx', '').replace('.md', '')}))
               .map(file => ({...file, previewUrl: `${previewUrl}/${file.basePath}`}))
-              .map(file => `- [${file.basePath}](${file.previewUrl})`).join('\n');
+              .map(file => `- Page ${file.status}: 📄 [${file.basePath}](${file.previewUrl})`).join('\n');
             if (changedFileLinks?.length > 0) {
               commentBody = `### Preview links\n${changedFileLinks}\n\n---\n\n` + commentBody;
             }
