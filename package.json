@@ -5,7 +5,7 @@
   "scripts": {
     "start": "docusaurus start",
     "build": "docusaurus clean-api-docs all && docusaurus gen-api-docs all && rm docs/rest-api/examplary-api.info.mdx && docusaurus build",
-    "deploy": "yarn serverless deploy --stage production"
+    "deploy": "serverless deploy --stage production"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",
