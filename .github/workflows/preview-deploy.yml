@@ -15,6 +15,8 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      pull-requests: write
+      issues: write
     env:
       SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
       ACM_CERTIFICATE_ARN: ${{ secrets.ACM_CERTIFICATE_ARN }}
