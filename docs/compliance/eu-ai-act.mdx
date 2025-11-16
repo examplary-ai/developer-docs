@@ -18,7 +18,7 @@
 
 ### Purpose and Intended Use
 
-- **Primary Purpose**: Examplary is an AI-powered examination platform that enables educators and institutions to create, administer, and grade exams efficiently. The system leverages several AI models, including Google Gemini 2.5 Flash and Pro models to generate exam questions, provide automated grading suggestions, and offer feedback to students.
+- **Primary Purpose**: Examplary is an AI-powered examination platform that enables educators, assessors and institutions to create, administer, and grade exams, assessments, essays and assignments efficiently. The system leverages several AI models, including Google Gemini 2.5 Flash and Pro models to generate exam questions, provide automated grading suggestions, and offer feedback to students.
 
 - **Sector of Deployment**: Education (Higher Education, Professional Training, K-12)
 
@@ -26,9 +26,9 @@
 
 - **Target Users and Stakeholders**:
 
-  - Primary Users: Educators, teachers, and instructors
+  - Primary Users: Educators, teachers, assessors, and instructors
   - Secondary Users: Educational administrators
-  - End Users: Students taking exams
+  - End Users: Students taking exams and practice tests, as well as anyone taking any type of assessment
   - Stakeholders: Educational institutions, learning management system administrators
 
 - **Key Performance Indicators (KPIs)**:
@@ -36,6 +36,7 @@
   - Question generation quality and relevance
   - Grading accuracy and consistency
   - Time saved in exam creation and grading
+  - Feedback accuracy and relevance
   - User satisfaction scores
   - System uptime and reliability
 
@@ -78,15 +79,17 @@ Examplary is classified as a **High-Risk** AI system under the EU AI Act for the
 
 1. **Educational Context** (Article 6, Annex III, Section 3): The system is used to:
 
-   - Determine access to educational institutions (through assessment)
+   - Determine access to educational institutions or other organizations (through assessment)
    - Evaluate learning outcomes and student performance
    - Influence decisions on educational paths and grading
 
 2. **Automated Decision-Making**: While human oversight is maintained, the system provides AI-generated:
 
-   - Exam questions and content
+   - Test, exam and assessment questions and content
    - Automated grading suggestions
    - Performance assessments in practice tests
+   - Rubrics for essays and assignments
+   - Feedback and comment suggestions
 
 3. **Potential Impact**: Educational assessments can significantly affect:
 
@@ -109,7 +112,7 @@ Examplary should be deployed with the following considerations:
 - **Training**: Educators must be trained on the system's capabilities, limitations, and proper use
 - **Context Awareness**: Results should be interpreted within the broader educational context
 - **Regular Review**: Periodic assessment of system performance and outcomes
-- **Student Communication**: Clear communication to students about AI use in assessments
+- **Student Communication**: Clear communication to students about AI use in assessments, feedback and grading
 
 ### Model Capabilities
 
@@ -121,6 +124,8 @@ Examplary should be deployed with the following considerations:
 - Suggest grades and feedback for subjective responses
 - Analyze exam difficulty and question quality
 - Generate variations of questions for academic integrity
+- Generate rubrics for assignments and essays
+- Provide automated grading of assignments and essays based on rubrics
 - Import and export questions in standard formats (QTI, Moodle)
 - Integrate with Learning Management Systems
 
@@ -128,7 +133,7 @@ Examplary should be deployed with the following considerations:
 
 - Cannot fully evaluate complex critical thinking without human review
 - May not capture nuanced or creative answers outside training patterns
-- Requires source materials for context-specific question generation
+- Requires source and reference materials for context-specific question generation
 - Performance depends on quality and clarity of input materials
 - Cannot assess non-textual elements without additional context
 - May require adjustment for specialized or highly technical domains
@@ -137,18 +142,23 @@ Examplary should be deployed with the following considerations:
 
 **Format Expectations**:
 
-- Source materials: PDF, DOCX, TXT, Markdown, web page content
+- Source and reference materials: PDF, DOCX, TXT, Markdown, web page content
 - Learning objectives: Structured text format
 - Student responses: Text-based submissions
 - Grading rubrics: Structured text format
 
 ### Output Explanation
 
+**Exam Outline Generation Outputs**:
+
+- Exam intro and outro
+- Question suggestions with question type and title, based on selected taxonomy
+
 **Question Generation Outputs**:
 
 - Generated questions include difficulty level indicators
 - Bloom's taxonomy or other taxonomy classification for each question
-- Suggested point values and time estimates
+- Suggested scoring criteria per question, aligning with learning objectives and chosen taxonomy
 
 **Grading suggestions Outputs**:
 
@@ -156,6 +166,12 @@ Examplary should be deployed with the following considerations:
 - Feedback comments and suggestions
 - Rubric alignment indicators
 - Certainty scores to help educators identify areas needing attention
+
+**Rubric Generation Outputs**:
+
+- Detailed rubrics with criteria and performance levels
+- Alignment with learning objectives
+- Suggestions for weighting and scoring
 
 ### System Architecture Overview
 
@@ -177,6 +193,8 @@ Examplary should be deployed with the following considerations:
 
    - Exam creation and configuration
    - Question bank management
+   - Rubric creation and management
+   - Source and reference materials management
    - Session and submission tracking
    - Results analytics and reporting
 
@@ -185,6 +203,7 @@ Examplary should be deployed with the following considerations:
    - LMS connectors (Canvas, Moodle)
    - API endpoints for third-party systems
    - Import/export functionality (QTI, custom formats)
+   - Ability to develop custom question types
 
 5. **User Interface**
    - Web-based educator dashboard
@@ -204,11 +223,11 @@ Examplary should be deployed with the following considerations:
 
 ### Datasets
 
-| Dataset                        | Source                   | Application Usage                                            |
-| ------------------------------ | ------------------------ | ------------------------------------------------------------ |
-| User-Provided Course Materials | Educational Institutions | Source content for question generation specific to courses   |
-| Grading Rubrics                | Educational Institutions | Assessment criteria for automated and assisted grading       |
-| Taxonomies of Learning         | Examplary                | Classification frameworks for organizing educational content |
+| Dataset                        | Source                   | Application Usage                                                                   |
+| ------------------------------ | ------------------------ | ----------------------------------------------------------------------------------- |
+| User-Provided Course Materials | Educational Institutions | Source content for question generation and feedback/feedforward specific to courses |
+| Grading Rubrics                | Educational Institutions | Assessment criteria for automated and assisted grading                              |
+| Taxonomies of Learning         | Examplary                | Classification frameworks for organizing educational content                        |
 
 **Data Characteristics**:
 
@@ -234,7 +253,7 @@ Examplary should be deployed with the following considerations:
 **External Dependencies**:
 
 - Google Gemini API (AI generation)
-- Learning Management Systems (Canvas, Moodle)
+- Learning Management Systems (Canvas, Moodle, BrightSpace, etc.)
 - Identity providers (AWS Cognito, OAuth, SAML)
 - Email service providers (AWS SES)
 - Payment processing (Stripe)
@@ -291,12 +310,12 @@ Examplary should be deployed with the following considerations:
 **Mitigation Measures**:
 
 - Human review required for all assessments
-- User feedback mechanism for reporting potential bias
+- Teacher feedback mechanism for reporting potential bias
 - Regular updates to prompts and model configurations
 
 #### 2. Inaccurate Grading or Feedback
 
-**Potential Harm**: Students receiving incorrect grades affecting their academic progress, self-confidence, and future opportunities.
+**Potential Harm**: Students receiving incorrect grades due to incorrect AI judgement or incorrect interpretation of handwritten responses, affecting their academic progress, self-confidence, and future opportunities.
 
 **Likelihood**: Medium | **Severity**: High
 
@@ -305,7 +324,7 @@ Examplary should be deployed with the following considerations:
 - Confidence scoring on all automated grades
 - Mandatory human review for all grading suggestions
 - Clear communication of AI suggestions vs. human grading
-- User feedback mechanism
+- Teacher feedback mechanism
 - Regular updates to prompts and model configurations
 
 #### 3. Privacy Breaches and Data Leakage
@@ -333,6 +352,18 @@ Examplary should be deployed with the following considerations:
 - Access controls and security
 - Usage monitoring
 - Educator controls for exam release
+
+#### 5. Pedagogic integrity of generated content
+
+**Potential Harm**: Generated questions or feedback not aligning with learning objectives or educational standards.
+
+**Likelihood**: Medium | **Severity**: Medium
+
+**Mitigation Measures**:
+
+- Alignment checks with curriculum standards
+- Educator review and approval workflows
+- Continuous updates based on pedagogical research
 
 #### 5. Model Drift and Performance Degradation
 
@@ -447,7 +478,6 @@ All changes are documented with:
 - Confidence scores for all generated grades
 - Human review required for all grading suggestions
 
-
 ### Cybersecurity
 
 {/* EU AI Act Article 11 (https://artificialintelligenceact.eu/article/11/); Annex IV (https://artificialintelligenceact.eu/annex/4/) paragraph 2 (h) */}
@@ -491,7 +521,7 @@ All changes are documented with:
 
 1. **Question Generation Review**:
 
-   - All generated questions reviewed by educators before use
+   - All generated questions and scoring criteria are reviewed by educators before use
    - Ability to edit, approve, or reject generated content
    - Version history and change tracking
 
@@ -499,6 +529,7 @@ All changes are documented with:
 
    - AI grading presented as suggestions, not final grades
    - Mandatory human review for all grading suggestions
+   - AI grading suggestions based on transparent scoring criteria, ensuring equal treatment
 
 3. **Quality Assurance**:
    - Random sampling of AI outputs for manual review
