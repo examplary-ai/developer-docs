@@ -1,3 +1,7 @@
+const {
+  createApiPageMD,
+} = require("docusaurus-plugin-openapi-docs/src/markdown");
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Examplary Developers",
@@ -23,7 +27,7 @@ const config = {
     hooks: {
       onBrokenMarkdownImages: "throw",
       onBrokenMarkdownLinks: "throw",
-    }
+    },
   },
 
   presets: [
@@ -59,8 +63,33 @@ const config = {
             specPath: "https://api-staging.examplary.ai/openapi",
             infoTemplate: "./docs/rest-api/index.md",
             outputDir: "docs/rest-api",
+            showExtensions: true,
             sidebarOptions: {
               groupPathsBy: "tag",
+            },
+            markdownGenerators: {
+              createApiPageMD: (pageData) => {
+                let md = createApiPageMD(pageData);
+                const rateLimit = pageData.api["x-ratelimit"];
+
+                if (rateLimit) {
+                  let window = rateLimit.window + " seconds";
+                  if (rateLimit.window === 1) {
+                    window = "second";
+                  } else if (rateLimit.window === 60) {
+                    window = "minute";
+                  } else if (
+                    rateLimit.window >= 60 &&
+                    rateLimit.window % 60 === 0
+                  ) {
+                    window = rateLimit.window / 60 + " minutes";
+                  }
+                  const rateLimitInfo = `\n\n_Rate Limit: ${rateLimit.limit} requests per ${window}_\n\n`;
+                  md += rateLimitInfo;
+                }
+
+                return md;
+              },
             },
           },
         },

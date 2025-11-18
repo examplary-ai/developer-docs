@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "docusaurus start",
-    "build": "docusaurus clean-api-docs all && docusaurus gen-api-docs all && rm docs/rest-api/examplary-api.info.mdx && docusaurus build",
+    "build-api-docs": "docusaurus gen-api-docs all && rm docs/rest-api/examplary-api.info.mdx",
+    "build": "docusaurus clean-api-docs all && yarn build-api-docs && docusaurus build",
     "deploy": "serverless deploy --stage production"
   },
   "dependencies": {
