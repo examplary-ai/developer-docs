@@ -10,7 +10,7 @@
 .cache-loader
 docs/rest-api/**
 !docs/rest-api/index.md
-!docs/rest-api/oauth.md
+!docs/rest-api/oauth.mdx
 static/llms.txt
 
 # Misc
