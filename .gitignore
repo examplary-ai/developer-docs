@@ -8,7 +8,8 @@
 # Generated files
 .docusaurus
 .cache-loader
-docs/rest-api/**
+docs/rest-api/**/*.mdx
+docs/rest-api/sidebar.ts
 !docs/rest-api/index.md
 !docs/rest-api/oauth.mdx
 static/llms.txt
