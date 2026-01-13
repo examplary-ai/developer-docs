@@ -7,14 +7,31 @@ sidebar_position: 2
 
 Using the Examplary AI question generation flow, you can let users of your application use AI to generate questions on a specific subject or a set of source materials.
 
-### 1. Create an embed session
+### 1. Create an Examplary user for your user
+To make sure we can save personal preferences and source materials uploaded by the user to their specific account,
+and can later allow them to reference these personal details, we require creating a user account in your workspace for each of your users.
+
+```json title="POST /users"
+{
+  "email": "my-user@example.com",
+  "name": "My User"
+}
+```
+
+Store the returned user ID in your system to use with any future embed sessions for that user.
+
+
+### 2. Create an embed session
 Call the Examplary API to create a new embed session. You can configure presets for the exam, as well as theme options.
+
+The `actor` field should contain the ID of the Examplary user account you created for this customer.
 
 You can either specify a `returnUrl` or an `allowedOrigin`, based on how you want to be notified when generation is completed.
 
 ```json title="POST /embed-sessions"
 {
   "flow": "generate-questions",
+  "actor": "user_423r9j3r0jeddJA...",
   "presets": {
     "subject": "Mathematics"
   },
@@ -35,9 +52,10 @@ This returns a response that looks like this:
 ```json
 {
   "id": "embed_session_55S843D7HfNfs9RY48PoTprXnRcz2Vw8Crst64UYrBnz...",
-  "flow": "generate-questions",
   "status": "pending",
   "embedUrl": "https://app.examplary.ai/embeds/55S843D7HfNf...",
+  "flow": "generate-questions",
+  "actor": "user_423r9j3r0jeddJA...",
   "enabledResponseModes": ["return_url", "post_message"],
   "createdAt": "2025-12-09T16:52:52.120Z",
   "expiresAt": "2025-12-16T16:52:52.120Z",
@@ -55,7 +73,7 @@ This returns a response that looks like this:
 }
 ```
 
-### 2. Lead the user to the embed URL
+### 3. Lead the user to the embed URL
 You can either redirect the user directly to the URL, or display it in an `iframe`. 
 
 The latter might be better for the user experience, especially when displayed as a modal. This also allows you to listen to status updates in real time:
@@ -99,7 +117,7 @@ If neither of these options work for you, you may also poll the Examplary API fo
 }
 ```
 
-### 3. Get exam contents
+### 4. Get exam contents
 Once the question generation has completed, you can use the API to retrieve your generated questions.
 
 In Examplary's normal format:
@@ -114,7 +132,7 @@ Or as a QTI package:
 POST /exams/{examId}/export/qti3-zip
 ```
 
-### 4. Cleanup
+### 5. Cleanup
 The embed session will expire automatically after 7 days, but because it gives some limited access to your account, you might want to remove it manually:
 
 ```

@@ -34,6 +34,9 @@ sequenceDiagram
 
     Note over Dev: User triggers<br/>test creation
 
+    Dev->>API: Call POST /users to create a user if not exists
+    API-->>Dev: Returns user ID
+
     Dev->>API: Call POST /embed-sessions to create session
     API-->>Dev: Returns session ID and URL
 
