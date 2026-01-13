@@ -24,6 +24,7 @@ const config = {
   onBrokenLinks: "throw",
 
   markdown: {
+    mermaid: true,
     hooks: {
       onBrokenMarkdownImages: "throw",
       onBrokenMarkdownLinks: "throw",
@@ -97,10 +98,13 @@ const config = {
     ],
   ],
 
-  themes: ["docusaurus-theme-openapi-docs"],
+  themes: [
+    "docusaurus-theme-openapi-docs",
+    "@docusaurus/theme-mermaid"
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       navbar: {
         title: "Examplary Developers",
         logo: {
@@ -116,7 +120,13 @@ const config = {
       prism: {
         additionalLanguages: ["bash"],
       },
-    }),
+      mermaid: {
+        theme: { 
+          light: "forest", 
+          dark: "dark"
+        },
+      }
+    }
 };
 
 export default config;

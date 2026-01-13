@@ -1,0 +1,129 @@
+---
+sidebar_label: Exam generation
+sidebar_position: 2
+---
+
+# Exam generation flow
+
+Using the Examplary AI question generation flow, you can let users of your application use AI to generate questions on a specific subject or a set of source materials.
+
+### 1. Create an embed session
+Call the Examplary API to create a new embed session. You can configure presets for the exam, as well as theme options.
+
+You can either specify a `returnUrl` or an `allowedOrigin`, based on how you want to be notified when generation is completed.
+
+```json title="POST /embed-sessions"
+{
+  "flow": "generate-questions",
+  "presets": {
+    "subject": "Mathematics"
+  },
+  "theme": {
+    "primaryColor": "pink",
+    "locale": "en"
+  },
+  "metadata": {
+    "myUniqueIdentifier": "abc1234"
+  },
+  "returnUrl": "https://example.com",
+  "allowedOrigin": "http://localhost:3000"
+}
+```
+
+This returns a response that looks like this:
+
+```json
+{
+  "id": "embed_session_55S843D7HfNfs9RY48PoTprXnRcz2Vw8Crst64UYrBnz...",
+  "flow": "generate-questions",
+  "status": "pending",
+  "embedUrl": "https://app.examplary.ai/embeds/55S843D7HfNf...",
+  "enabledResponseModes": ["return_url", "post_message"],
+  "createdAt": "2025-12-09T16:52:52.120Z",
+  "expiresAt": "2025-12-16T16:52:52.120Z",
+  "presets": {
+    "subject": "Mathematics"
+  },
+  "outputs": {},
+  "theme": {
+    "primaryColor": "pink",
+    "locale": "en"
+  },
+  "metadata": {
+    "myUniqueIdentifier": "abc1234"
+  }
+}
+```
+
+### 2. Lead the user to the embed URL
+You can either redirect the user directly to the URL, or display it in an `iframe`. 
+
+The latter might be better for the user experience, especially when displayed as a modal. This also allows you to listen to status updates in real time:
+
+```ts
+import * as Examplary from "@examplary/embed-sessions-client";
+
+Examplary.displayModal(embedUrl, {
+	onStatusUpdate: (status, outputs) => {
+		console.log("Status has changed:", status);
+		console.log("Outputs:", outputs);
+		
+		if (status === "completed") {
+			// do something with outputs.examId
+		}
+	}
+});
+
+// or:
+Examplary.displayInline(embedUrl, {
+	container: document.getElementById('generate_options'),
+	onStatusUpdate: (status, outputs) => { /* ... */ }
+});
+```
+
+If you're using redirects, you can expect a redirect to your specified `returnUrl` with one of two query string parameters values:
+- On success: `?status=completed&examId=exam_dj8948hf98hf43`
+- On failure: `?status=cancelled`
+
+If neither of these options work for you, you may also poll the Examplary API for status updates:
+
+```json title="GET /embed-sessions/{id}"
+{
+  "id": "embed_session_55S843D7HfNfs9RY48PoTprXnRcz2...",
+  "flow": "generate-questions",
+  "status": "completed",
+  "outputs": {
+	  "examId": "exam_dj8948hf98hf43"
+  },
+  // ...
+}
+```
+
+### 3. Get exam contents
+Once the question generation has completed, you can use the API to retrieve your generated questions.
+
+In Examplary's normal format:
+
+```
+GET /exams/{examId}
+```
+
+Or as a QTI package:
+
+```
+POST /exams/{examId}/export/qti3-zip
+```
+
+### 4. Cleanup
+The embed session will expire automatically after 7 days, but because it gives some limited access to your account, you might want to remove it manually:
+
+```
+DELETE /embed-sessions/{embedSessionId}
+```
+
+You can also delete the generated exam once you don't need it anymore:
+
+```
+DELETE /exams/{examId}
+```
+
