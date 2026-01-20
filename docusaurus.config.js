@@ -77,10 +77,16 @@ const config = {
                     const newObj = {};
                     for (const key in obj) {
                       if (key === "pattern" && obj["format"] === "date-time") {
-                        if(!obj.description){
+                        if (!obj.description) {
                           obj.description = "ISO 8601 date-time string.";
                         }
                         continue; // Skip the pattern field for date-time format
+                      }
+                      if (key === "pattern" && obj["format"] === "email") {
+                        if (!obj.description) {
+                          obj.description = "Email address string.";
+                        }
+                        continue; // Skip the pattern field for email format
                       }
                       newObj[key] = deepCleanParams(obj[key]);
                     }
