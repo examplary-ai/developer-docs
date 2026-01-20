@@ -64,14 +64,17 @@ const config = {
             specPath: "https://api-staging.examplary.ai/openapi",
             infoTemplate: "./docs/rest-api/index.md",
             outputDir: "docs/rest-api",
-            showExtensions: true,
             sidebarOptions: {
               groupPathsBy: "tag",
             },
             markdownGenerators: {
               createApiPageMD: (pageData) => {
-                let md = createApiPageMD(pageData);
                 const rateLimit = pageData.api["x-ratelimit"];
+                const scope = pageData.api["x-scope-required"];
+
+                console.log(JSON.stringify(pageData, null, 2));
+
+                let md = createApiPageMD(pageData);
 
                 if (rateLimit) {
                   let window = rateLimit.window + " seconds";
@@ -85,8 +88,13 @@ const config = {
                   ) {
                     window = rateLimit.window / 60 + " minutes";
                   }
-                  const rateLimitInfo = `\n\n_Rate Limit: ${rateLimit.limit} requests per ${window}_\n\n`;
+                  const rateLimitInfo = `\n\n## Rate Limit\n\n${rateLimit.limit} requests per ${window}.\n\n`;
                   md += rateLimitInfo;
+                }
+
+                if (scope) {
+                  const scopeInfo = `\n\n## OAuth scopes\n\nThis endpoint requires the ${scope.map((s) => `\`${s}\``).join(", ")} scope to be present.\n\n`;
+                  md += scopeInfo;
                 }
 
                 return md;
@@ -98,10 +106,7 @@ const config = {
     ],
   ],
 
-  themes: [
-    "docusaurus-theme-openapi-docs",
-    "@docusaurus/theme-mermaid"
-  ],
+  themes: ["docusaurus-theme-openapi-docs", "@docusaurus/theme-mermaid"],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
@@ -121,12 +126,12 @@ const config = {
         additionalLanguages: ["bash"],
       },
       mermaid: {
-        theme: { 
-          light: "forest", 
-          dark: "dark"
+        theme: {
+          light: "forest",
+          dark: "dark",
         },
-      }
-    }
+      },
+    },
 };
 
 export default config;
