@@ -121,7 +121,7 @@ const config = {
                 }
 
                 if (scope) {
-                  const scopeInfo = `\n\n## OAuth scopes\n\nThis endpoint requires the ${scope.map((s) => `\`${s}\``).join(", ")} scope to be present.\n\n`;
+                  const scopeInfo = `\n\n## OAuth scopes\n\nThis endpoint requires the ${scope.map((s) => `\`${s}\``).join(" and ")} scope to be present.\n\n`;
                   md += scopeInfo;
                 }
 
