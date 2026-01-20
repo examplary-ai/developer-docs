@@ -43,8 +43,8 @@ You can either specify a `returnUrl` or an `allowedOrigin`, based on how you wan
   "metadata": {
     "myUniqueIdentifier": "abc1234"
   },
-  "returnUrl": "https://example.com",
-  "allowedOrigin": "http://localhost:3000"
+  "returnUrl": "https://app.example.com",
+  "allowedOrigin": "https://app.example.com"
 }
 ```
 

@@ -3,7 +3,7 @@ sidebar_label: Introduction
 sidebar_position: 1
 ---
 
-# Embed Sessions
+# Embed Sessions (beta)
 
 Our platform makes it possible for other service providers to integrate parts of the Examplary experience within their products.
 To make this possible, we offer the **Embed Sessions** API, which allows the service provider to get a unique link
