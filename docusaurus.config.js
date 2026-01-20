@@ -69,12 +69,31 @@ const config = {
             },
             markdownGenerators: {
               createApiPageMD: (pageData) => {
+                // Responsible for removing "pattern" field from parameters of format "date-time"
+                const deepCleanParams = (obj) => {
+                  if (Array.isArray(obj)) {
+                    return obj.map((item) => deepCleanParams(item));
+                  } else if (obj !== null && typeof obj === "object") {
+                    const newObj = {};
+                    for (const key in obj) {
+                      if (key === "pattern" && obj["format"] === "date-time") {
+                        continue; // Skip the pattern field for date-time format
+                      }
+                      newObj[key] = deepCleanParams(obj[key]);
+                    }
+                    return newObj;
+                  }
+                  return obj;
+                };
+
+                pageData.api = deepCleanParams(pageData.api);
+
                 const rateLimit = pageData.api["x-ratelimit"];
                 const scope = pageData.api["x-scope-required"];
 
-                console.log(JSON.stringify(pageData, null, 2));
-
                 let md = createApiPageMD(pageData);
+
+                console.log(md);
 
                 if (rateLimit) {
                   let window = rateLimit.window + " seconds";
