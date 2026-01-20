@@ -53,9 +53,7 @@ sequenceDiagram
 
 ## Getting started
 
-To get started testing this flow, first create a free account on [app.examplary.ai](https://app.examplary.ai/register).
-
-Find your API key in the [Developer settings](https://app.examplary.ai/account/developer) page.
+To get started testing this flow, first create a free account on [app.examplary.ai](https://app.examplary.ai/register). Find your API key in the [Developer settings](https://app.examplary.ai/account/developer) page.
 
 Then, follow the instructions in the [exam generation flow](./exam-generation) document to create your first embed session.
 
