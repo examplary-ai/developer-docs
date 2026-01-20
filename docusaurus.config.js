@@ -77,6 +77,9 @@ const config = {
                     const newObj = {};
                     for (const key in obj) {
                       if (key === "pattern" && obj["format"] === "date-time") {
+                        if(!obj.description){
+                          obj.description = "ISO 8601 date-time string.";
+                        }
                         continue; // Skip the pattern field for date-time format
                       }
                       newObj[key] = deepCleanParams(obj[key]);
