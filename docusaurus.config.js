@@ -116,7 +116,11 @@ const config = {
                   ) {
                     window = rateLimit.window / 60 + " minutes";
                   }
-                  const rateLimitInfo = `\n\n## Rate Limit\n\n${rateLimit.limit} requests per ${window}.\n\n`;
+                  let rateLimitScope = "";
+                  if (rateLimit.scope === "user") rateLimitScope = " per user";
+                  if (rateLimit.scope === "ip")
+                    rateLimitScope = " per IP address";
+                  const rateLimitInfo = `\n\n## Rate Limit\n\n**${rateLimit.limit}** requests per ${window}${rateLimitScope}.\n\n`;
                   md += rateLimitInfo;
                 }
 
