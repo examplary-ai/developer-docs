@@ -14,11 +14,11 @@ while still leveraging the full power of the Examplary platform.
 
 ## Getting started
 
-To get started testing this flow, first create a free account on [app.examplary.ai](https://app.examplary.ai/register). Find your API key in the [Developer settings](https://app.examplary.ai/account/developer) page.
+To get started testing this flow, first create a [Examplary](https://app.examplary.ai/register) account.
 
 You'll need to get your organisation approved for using embed sessions. Please contact us at [hi@examplary.ai](mailto:hi@examplary.ai) with your organisation details or use the chat widget in the app to request access.
 
-Then, follow the instructions in the [exam generation flow](./exam-generation) document to create your first embed session.
+Find your API key in the [Developer settings](https://app.examplary.ai/account/developer) page. Then, follow the instructions in the [exam generation flow](./exam-generation) document to create your first embed session.
 
 Or have a look at the [live code example](https://examplary-ai.github.io/embed-sessions-demo/).
 
