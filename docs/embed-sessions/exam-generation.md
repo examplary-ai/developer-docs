@@ -7,6 +7,14 @@ sidebar_position: 2
 
 Using the Examplary AI question generation flow, you can let users of your application use AI to generate questions on a specific subject or a set of source materials.
 
+Current flow:
+
+![Exam generation flow](./exam-generate.png)
+
+Soon to be upgraded with an 'exam outline' step, where the user can customize the structure of the exam before generation (March 2026):
+
+![Exam generation flow with outline step](./exam-generate-new.png)
+
 ### 1. Create an Examplary user for your user
 
 To make sure we can save personal preferences and source materials uploaded by the user to their specific account,
