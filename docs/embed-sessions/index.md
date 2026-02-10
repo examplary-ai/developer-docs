@@ -26,7 +26,8 @@ Or have a look at the [live code example](https://examplary-ai.github.io/embed-s
 
 **Currently supported flows:**
 
-- Exam generation flow (`generate-exam`)
+- [Exam generation flow](./exam-generation) (`generate-exam`)
+- [Edit rubric flow](./edit-rubric) (`edit-rubric`)
 
 **Coming soon:**
 

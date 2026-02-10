@@ -43,3 +43,10 @@ Example of all presets specified:
   }
 }
 ```
+
+## Flow `edit-rubric` presets
+
+| Key              | Type    | Description                                                                                                                                                                                                                         |
+| ---------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `showDoneButton` | boolean | Whether to show a "Done" button in the UI that allows users to indicate they are done editing the rubric. Defaults to `true`.                                                                                                       |
+| `rubric`         | object  | An object representing a rubric to pre-load in the editor. Should follow the same structure as the `rubric` field in the API response of the rubric editor flow. [JSON schema](https://schemas.examplary.ai/question-scoring.json). |
