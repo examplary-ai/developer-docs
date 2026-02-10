@@ -1,5 +1,5 @@
 ---
-sidebar_label: Exam generation
+sidebar_label: Generate exam
 sidebar_position: 2
 ---
 
