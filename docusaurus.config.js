@@ -99,6 +99,7 @@ const config = {
 
                 const rateLimit = pageData.api["x-ratelimit"];
                 const scope = pageData.api["x-scope-required"];
+                const role = pageData.api["x-role-required"];
 
                 let md = createApiPageMD(pageData);
 
@@ -124,10 +125,16 @@ const config = {
                   md += rateLimitInfo;
                 }
 
+                if (role) {
+                  const roleInfo = `\n\n## User roles\n\nThis endpoint requires the ${role.map((r) => `\`${r}\``).join(" or ")} role to be present.\n\n`;
+                  md += roleInfo;
+                }
+
                 if (scope) {
                   const scopeInfo = `\n\n## OAuth scopes\n\nThis endpoint requires the ${scope.map((s) => `\`${s}\``).join(" and ")} scope to be present.\n\n`;
                   md += scopeInfo;
                 }
+
 
                 return md;
               },
