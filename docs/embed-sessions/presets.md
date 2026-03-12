@@ -44,6 +44,36 @@ Example of all presets specified:
 }
 ```
 
+## Flow `generate-question` presets
+
+| Key                 | Type     | Description                                                                                    |
+| ------------------- | -------- | ---------------------------------------------------------------------------------------------- |
+| `subject`           | string   | The subject of the question. Plain text.                                                       |
+| `studentLevel`      | string   | The difficulty level of the question. Expects a student level ID from `/student-levels`.       |
+| `language`          | string   | The language code for the question (e.g. "en" for English). Defaults to the user's locale.     |
+| `context`           | string   | Additional context or instructions for the question generation. Plain text.                    |
+| `sourceMaterialIds` | string[] | An array of source material IDs to pre-select for the question.                                |
+| `questionType`      | string   | Specify the ID of a question type to generate. Will hide the question type selector in the UI. |
+| `hideSubject`       | boolean  | Whether to hide the subject field in the question generation UI. Defaults to `false`.          |
+| `hideStudentLevel`  | boolean  | Whether to hide the student level field in the question generation UI. Defaults to `false`.    |
+
+Example of all presets specified:
+
+```json title="POST /embed-sessions"
+{
+  "presets": {
+    "subject": "Mathematics",
+    "studentLevel": "us_high_school_lower",
+    "language": "en",
+    "sourceMaterialIds": ["material_123567890", "material_4564543435443"],
+    "context": "Focus on algebraic expressions and equations.",
+    "questionType": "multiple-choice-single-answer",
+    "hideSubject": false,
+    "hideStudentLevel": false
+  }
+}
+```
+
 ## Flow `edit-rubric` presets
 
 | Key              | Type    | Description                                                                                                                                                                                                                         |
