@@ -24,14 +24,10 @@ Or have a look at the [live code example](https://examplary-ai.github.io/embed-s
 
 ## Supported flows
 
-**Currently supported flows:**
-
 - [Exam generation flow](./exam-generation) (`generate-exam`)
 - [Edit rubric flow](./edit-rubric) (`edit-rubric`)
+- [Question generation flow](./question-generation) (`generate-question`)
 
-**Coming soon:**
-
-- Question generation flow (`generate-question`)
 
 ## Example flow
 

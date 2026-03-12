@@ -1,13 +1,11 @@
 ---
-sidebar_label: Generate exam
-sidebar_position: 2
+sidebar_label: Generate question
+sidebar_position: 3
 ---
 
-# Exam generation flow
+# Question generation flow
 
-Using the Examplary AI question generation flow, you can let users of your application use AI to generate questions on a specific subject or a set of source materials.
-
-![Exam generation flow](./exam-generate.png)
+Using the Examplary AI question generation flow, you can let users of your application use AI to generate a single question on a specific subject or a set of source materials.
 
 ### 1. Create an Examplary user for your user
 
@@ -25,7 +23,7 @@ Store the returned user ID in your system to use with any future embed sessions 
 
 ### 2. Create an embed session
 
-Call the Examplary API to create a new embed session. You can configure presets for the exam, as well as theme options.
+Call the Examplary API to create a new embed session. You can configure presets for the question, as well as theme options.
 
 The `actor` field should contain the ID of the Examplary user account you created for this customer.
 
@@ -33,7 +31,7 @@ You can either specify a `returnUrl` or an `allowedOrigin`, based on how you wan
 
 ```json title="POST /embed-sessions"
 {
-  "flow": "generate-exam",
+  "flow": "generate-question",
   "actor": "user_423r9j3r0jeddJA...",
   "presets": {
     "subject": "Mathematics"
@@ -57,7 +55,7 @@ This returns a response that looks like this:
   "id": "embed_session_55S843D7HfNfs9RY48PoTprXnRcz2Vw8Crst64UYrBnz...",
   "status": "pending",
   "embedUrl": "https://app.examplary.ai/embeds/55S843D7HfNf...",
-  "flow": "generate-exam",
+  "flow": "generate-question",
   "actor": "user_423r9j3r0jeddJA...",
   "enabledResponseModes": ["return_url", "post_message"],
   "createdAt": "2025-12-09T16:52:52.120Z",
@@ -96,10 +94,10 @@ window.addEventListener("message", (event) => {
   const { type, status, outputs } = event.data;
   if (type === "examplary:embed-status-update") {
     if (status === "completed") {
-      const examId = outputs.examId;
-      console.log("Exam generation completed! Exam ID:", examId);
+      const question = outputs.question;
+      console.log("Question generation completed! Question:", question);
     } else if (status === "cancelled") {
-      console.log("Exam generation was cancelled by the user.");
+      console.log("Question generation was cancelled by the user.");
     }
   }
 });
@@ -107,7 +105,7 @@ window.addEventListener("message", (event) => {
 
 If you're using redirects, you can expect a redirect to your specified `returnUrl` with one of two query string parameters values:
 
-- On success: `?status=completed&examId=exam_dj8948hf98hf43`
+- On success: `?status=completed&question=...`
 - On failure: `?status=cancelled`
 
 If neither of these options work for you, you may also poll the Examplary API for status updates:
@@ -115,41 +113,21 @@ If neither of these options work for you, you may also poll the Examplary API fo
 ```json title="GET /embed-sessions/{id}"
 {
   "id": "embed_session_55S843D7HfNfs9RY48PoTprXnRcz2...",
-  "flow": "generate-questions",
+  "flow": "generate-question",
   "status": "completed",
   "outputs": {
-    "examId": "exam_dj8948hf98hf43"
+    "question": {
+      // ...
+    }
   }
   // ...
 }
 ```
 
-### 4. Get exam contents
-
-Once the question generation has completed, you can use the API to retrieve your generated questions.
-
-In Examplary's normal format:
-
-```
-GET /exams/{examId}
-```
-
-Or as a QTI package:
-
-```
-POST /exams/{examId}/export/qti3-zip
-```
-
-### 5. Cleanup
+### 4. Cleanup
 
 The embed session will expire automatically after 7 days, but because it gives some limited access to your account, you might want to remove it manually:
 
 ```
 DELETE /embed-sessions/{embedSessionId}
-```
-
-You can also delete the generated exam once you don't need it anymore:
-
-```
-DELETE /exams/{examId}
 ```
