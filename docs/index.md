@@ -14,6 +14,7 @@ This documentation will guide you through the available features, how to set up 
 
 - 🌿 [Build a custom question type](/question-types)
 - 🔧 [Integrate with the Examplary API](/rest-api)
+- 🖥️ [Embed Examplary into your platform](/embed-sessions)
 
 ### Import or connect an application
 
