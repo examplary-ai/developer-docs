@@ -97,7 +97,7 @@ Examplary ships with a set of built-in question types that are available to all 
 an overview of each default question type, its capabilities, and configurable settings.
 
 :::note Auto-generated
-This page is auto-generated from the [Examplary API](/rest-api/get-question-types-public).
+This page is auto-generated from the [Examplary API](/rest-api/question-types-list-public).
 :::
 
 `;
