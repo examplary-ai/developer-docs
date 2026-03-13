@@ -5,7 +5,8 @@
   "scripts": {
     "start": "docusaurus start",
     "build-api-docs": "docusaurus gen-api-docs all && rm docs/rest-api/examplary-api.info.mdx",
-    "build": "docusaurus clean-api-docs all && yarn build-api-docs && docusaurus build",
+    "build-default-question-types": "node scripts/default-question-types.js",
+    "build": "docusaurus clean-api-docs all && yarn build-api-docs && yarn build-default-question-types && docusaurus build",
     "deploy": "serverless deploy --stage production"
   },
   "dependencies": {

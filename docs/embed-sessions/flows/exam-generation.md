@@ -1,17 +1,17 @@
 ---
-sidebar_label: Edit rubric
-sidebar_position: 3
+sidebar_label: Generate exam
+sidebar_position: 2
 ---
 
-# Edit rubric flow
+# Exam generation flow
 
-Examplary includes a rubric editor flow that allows users to create and edit rubrics for grading questions. You can embed this flow in your application to let users create their own rubrics, or edit existing ones.
+Using the Examplary AI question generation flow, you can let users of your application use AI to generate questions on a specific subject or a set of source materials.
 
-![Edit rubric flow](./edit-rubric.png)
+![Exam generation flow](./exam-generate.png)
 
 ### 1. Create an Examplary user for your user
 
-To make sure we can save personal preferences and rubric templates created by the user to their specific account,
+To make sure we can save personal preferences and source materials uploaded by the user to their specific account,
 and can later allow them to reference these personal details, we require creating a user account in your workspace for each of your users.
 
 ```json title="POST /users"
@@ -25,7 +25,7 @@ Store the returned user ID in your system to use with any future embed sessions 
 
 ### 2. Create an embed session
 
-Call the Examplary API to create a new embed session. You can configure presets for the rubric editor, as well as theme options.
+Call the Examplary API to create a new embed session. You can configure presets for the exam, as well as theme options.
 
 The `actor` field should contain the ID of the Examplary user account you created for this customer.
 
@@ -33,10 +33,10 @@ You can either specify a `returnUrl` or an `allowedOrigin`, based on how you wan
 
 ```json title="POST /embed-sessions"
 {
-  "flow": "edit-rubric",
+  "flow": "generate-exam",
   "actor": "user_423r9j3r0jeddJA...",
   "presets": {
-    "showDoneButton": true
+    "subject": "Mathematics"
   },
   "theme": {
     "primaryColor": "#4f46e5",
@@ -57,13 +57,13 @@ This returns a response that looks like this:
   "id": "embed_session_55S843D7HfNfs9RY48PoTprXnRcz2Vw8Crst64UYrBnz...",
   "status": "pending",
   "embedUrl": "https://app.examplary.ai/embeds/55S843D7HfNf...",
-  "flow": "edit-rubric",
+  "flow": "generate-exam",
   "actor": "user_423r9j3r0jeddJA...",
   "enabledResponseModes": ["return_url", "post_message"],
   "createdAt": "2025-12-09T16:52:52.120Z",
   "expiresAt": "2025-12-16T16:52:52.120Z",
   "presets": {
-    "showDoneButton": true
+    "subject": "Mathematics"
   },
   "outputs": {},
   "theme": {
@@ -95,14 +95,11 @@ window.addEventListener("message", (event) => {
   // Handle the message
   const { type, status, outputs } = event.data;
   if (type === "examplary:embed-status-update") {
-    console.log(status);
-
     if (status === "completed") {
-      const rubric = outputs.rubric;
-      console.log(
-        "Rubric creation complete. You might want to hide the iframe now.",
-        rubric,
-      );
+      const examId = outputs.examId;
+      console.log("Exam generation completed! Exam ID:", examId);
+    } else if (status === "cancelled") {
+      console.log("Exam generation was cancelled by the user.");
     }
   }
 });
@@ -110,27 +107,40 @@ window.addEventListener("message", (event) => {
 
 If you're using redirects, you can expect a redirect to your specified `returnUrl` with one of two query string parameters values:
 
-- On success: `?status=completed&rubric={...}`
+- On success: `?status=completed&examId=exam_dj8948hf98hf43`
+- On failure: `?status=cancelled`
 
 If neither of these options work for you, you may also poll the Examplary API for status updates:
 
 ```json title="GET /embed-sessions/{id}"
 {
   "id": "embed_session_55S843D7HfNfs9RY48PoTprXnRcz2...",
-  "flow": "edit-rubric",
+  "flow": "generate-questions",
   "status": "completed",
   "outputs": {
-    "rubric": {
-      // ...
-    }
+    "examId": "exam_dj8948hf98hf43"
   }
   // ...
 }
 ```
 
-You can find the JSON schema for the rubric output [here](https://schemas.examplary.ai/question-scoring.json).
+### 4. Get exam contents
 
-### 4. Cleanup
+Once the question generation has completed, you can use the API to retrieve your generated questions.
+
+In Examplary's normal format:
+
+```
+GET /exams/{examId}
+```
+
+Or as a QTI package:
+
+```
+POST /exams/{examId}/export/qti3-zip
+```
+
+### 5. Cleanup
 
 The embed session will expire automatically after 7 days, but because it gives some limited access to your account, you might want to remove it manually:
 

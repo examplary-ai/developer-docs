@@ -102,8 +102,7 @@ const config = {
                 const role = pageData.api["x-role-required"];
 
                 let md = createApiPageMD(pageData);
-
-                console.log(md);
+                let moreInfo = "";
 
                 if (rateLimit) {
                   let window = rateLimit.window + " seconds";
@@ -122,19 +121,22 @@ const config = {
                   if (rateLimit.scope === "ip")
                     rateLimitScope = " per IP address";
                   const rateLimitInfo = `\n\n## Rate Limit\n\n**${rateLimit.limit}** requests per ${window}${rateLimitScope}.\n\n`;
-                  md += rateLimitInfo;
+                  moreInfo += rateLimitInfo;
                 }
 
                 if (role) {
                   const roleInfo = `\n\n## User roles\n\nThis endpoint requires the ${role.map((r) => `\`${r}\``).join(" or ")} role to be present.\n\n`;
-                  md += roleInfo;
+                  moreInfo += roleInfo;
                 }
 
                 if (scope) {
                   const scopeInfo = `\n\n## OAuth scopes\n\nThis endpoint requires the ${scope.map((s) => `\`${s}\``).join(" and ")} scope to be present.\n\n`;
-                  md += scopeInfo;
+                  moreInfo += scopeInfo;
                 }
 
+                if (moreInfo) {
+                  md += `\n\n---\n\n${moreInfo}`;
+                }
 
                 return md;
               },

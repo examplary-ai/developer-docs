@@ -18,20 +18,16 @@ To get started testing this flow, first create a [Examplary](https://app.exampla
 
 You'll need to get your organisation approved for using embed sessions. Please contact us at [hi@examplary.ai](mailto:hi@examplary.ai) with your organisation details or use the chat widget in the app to request access.
 
-Find your API key in the [Developer settings](https://app.examplary.ai/account/developer) page. Then, follow the instructions in the [exam generation flow](./exam-generation) document to create your first embed session.
+Find your API key in the [Developer settings](https://app.examplary.ai/account/developer) page. Then, follow the instructions in the [exam generation flow](flows/exam-generation.md) document to create your first embed session.
 
 Or have a look at the [live code example](https://examplary-ai.github.io/embed-sessions-demo/).
 
 ## Supported flows
 
-**Currently supported flows:**
+- [Exam generation](flows/exam-generation.md) (`generate-exam`)
+- [Edit rubric](flows/edit-rubric.md) (`edit-rubric`)
+- [Question generation](flows/generate-question.md) (`generate-question`)
 
-- [Exam generation flow](./exam-generation) (`generate-exam`)
-- [Edit rubric flow](./edit-rubric) (`edit-rubric`)
-
-**Coming soon:**
-
-- Question generation flow (`generate-question`)
 
 ## Example flow
 
