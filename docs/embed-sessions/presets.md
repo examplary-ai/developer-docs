@@ -46,16 +46,17 @@ Example of all presets specified:
 
 ## Flow `generate-question` presets
 
-| Key                 | Type     | Description                                                                                    |
-| ------------------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `subject`           | string   | The subject of the question. Plain text.                                                       |
-| `studentLevel`      | string   | The difficulty level of the question. Expects a student level ID from `/student-levels`.       |
-| `language`          | string   | The language code for the question (e.g. "en" for English). Defaults to the user's locale.     |
-| `context`           | string   | Additional context or instructions for the question generation. Plain text.                    |
-| `sourceMaterialIds` | string[] | An array of source material IDs to pre-select for the question.                                |
-| `questionType`      | string   | Specify the ID of a question type to generate. Will hide the question type selector in the UI. |
-| `hideSubject`       | boolean  | Whether to hide the subject field in the question generation UI. Defaults to `false`.          |
-| `hideStudentLevel`  | boolean  | Whether to hide the student level field in the question generation UI. Defaults to `false`.    |
+| Key                 | Type     | Description                                                                                                                                 |
+| ------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `subject`           | string   | The subject of the question. Plain text.                                                                                                    |
+| `studentLevel`      | string   | The difficulty level of the question. Expects a student level ID from `/student-levels`.                                                    |
+| `language`          | string   | The language code for the question (e.g. "en" for English). Defaults to the user's locale.                                                  |
+| `context`           | string   | Additional context or instructions for the question generation. Plain text.                                                                 |
+| `sourceMaterialIds` | string[] | An array of source material IDs to pre-select for the question.                                                                             |
+| `questionType`      | string   | Specify the ID of a question type to generate. Will hide the question type selector in the UI.                                              |
+| `hideSubject`       | boolean  | Whether to hide the subject field in the question generation UI. Defaults to `false`.                                                       |
+| `hideStudentLevel`  | boolean  | Whether to hide the student level field in the question generation UI. Defaults to `false`.                                                 |
+| `outputFormat`      | string   | Specify the output format for the generated question. Can be either `examplary_json`, `qti_v2p1`, `qti_v3p0`. Defaults to `examplary_json`. |
 
 Example of all presets specified:
 
