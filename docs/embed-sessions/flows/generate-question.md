@@ -27,6 +27,8 @@ Call the Examplary API to create a new embed session. You can configure presets 
 
 The `actor` field should contain the ID of the Examplary user account you created for this customer.
 
+In the presets, you can also specify the `outputFormat` for the generated question. View the full set of presets here: [Presets](/embed-sessions/presets#flow-generate-question-presets).
+
 You can either specify a `returnUrl` or an `allowedOrigin`, based on how you want to be notified when generation is completed.
 
 ```json title="POST /embed-sessions"

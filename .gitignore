@@ -12,6 +12,7 @@ docs/rest-api/**/*.mdx
 docs/rest-api/sidebar.ts
 !docs/rest-api/index.md
 !docs/rest-api/oauth.mdx
+docs/guides/default-question-types.md
 static/llms.txt
 
 # Misc

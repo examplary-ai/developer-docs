@@ -11,17 +11,17 @@ None of these fields are required. If you do not provide any presets, the user w
 
 ## Flow `generate-exam` presets
 
-| Key                              | Type     | Description                                                                            |
-| -------------------------------- | -------- | -------------------------------------------------------------------------------------- |
-| `name`                           | string   | The name of the exam. Plain text.                                                      |
-| `subject`                        | string   | The subject of the exam. Plain text.                                                   |
-| `studentLevel`                   | string   | The difficulty level of the exam. Expects a student level ID from `/student-levels`.   |
-| `intendedDuration`               | integer  | The intended duration of the exam in minutes (in 15 minute increments).                |
-| `taxonomyId`                     | string   | The ID of the taxonomy to use for the exam, from `/taxonomies`.                        |
-| `language`                       | string   | The language code for the exam (e.g. "en" for English). Defaults to the user's locale. |
-| `sourceMaterialIds`              | string[] | An array of source material IDs to pre-select for the exam.                            |
-| `allowedGenerationQuestionTypes` | string[] | An array of question type IDs to limit the question generation options to.             |
-| `context`                        | string   | Additional context or instructions for the exam generation. Plain text.                |
+| Key                              | Type     | Description                                                                                                  |
+| -------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `name`                           | string   | The name of the exam. Plain text.                                                                            |
+| `subject`                        | string   | The subject of the exam. Plain text.                                                                         |
+| `studentLevel`                   | string   | The difficulty level of the exam. Expects a student level ID from `/student-levels`.                         |
+| `intendedDuration`               | integer  | The intended duration of the exam in minutes (in 15 minute increments).                                      |
+| `taxonomyId`                     | string   | The ID of the taxonomy to use for the exam, from `/taxonomies`.                                              |
+| `language`                       | string   | The language code for the exam (e.g. "en" for English). Defaults to the user's locale.                       |
+| `sourceMaterialIds`              | string[] | An array of source material IDs to pre-select for the exam.                                                  |
+| `allowedGenerationQuestionTypes` | string[] | An array of [question type IDs](/guides/default-question-types) to limit the question generation options to. |
+| `context`                        | string   | Additional context or instructions for the exam generation. Plain text.                                      |
 
 Example of all presets specified:
 
@@ -53,7 +53,7 @@ Example of all presets specified:
 | `language`          | string   | The language code for the question (e.g. "en" for English). Defaults to the user's locale.                                                  |
 | `context`           | string   | Additional context or instructions for the question generation. Plain text.                                                                 |
 | `sourceMaterialIds` | string[] | An array of source material IDs to pre-select for the question.                                                                             |
-| `questionType`      | string   | Specify the ID of a question type to generate. Will hide the question type selector in the UI.                                              |
+| `questionType`      | string   | Specify the [ID of a question type](/guides/default-question-types) to generate. Will hide the question type selector in the UI.            |
 | `hideSubject`       | boolean  | Whether to hide the subject field in the question generation UI. Defaults to `false`.                                                       |
 | `hideStudentLevel`  | boolean  | Whether to hide the student level field in the question generation UI. Defaults to `false`.                                                 |
 | `outputFormat`      | string   | Specify the output format for the generated question. Can be either `examplary_json`, `qti_v2p1`, `qti_v3p0`. Defaults to `examplary_json`. |
@@ -63,6 +63,7 @@ Example of all presets specified:
 ```json title="POST /embed-sessions"
 {
   "presets": {
+    "outputFormat": "qti_v3p0",
     "subject": "Mathematics",
     "studentLevel": "us_high_school_lower",
     "language": "en",
